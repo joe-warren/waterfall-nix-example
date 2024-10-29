@@ -7,6 +7,10 @@ This has a dependency on the [OpenCascade C++ library](https://dev.opencascade.o
 
 Ultimately, I'd like to figure out how to fix this issue, but hopefully this repo demonstrates a workaround that can be used until that's in place
 
+---
+
+The docker file included in this repo is purely for my benefit, I'm not suggesting anyone run Nix inside of Docker.
+
 
 
 
