@@ -1,21 +1,5 @@
-let
-  compilerVersion = "ghc964";
-  config = {
-    packageOverrides = pkgs: rec {
-      haskell = pkgs.haskell // {
-        packages = pkgs.haskell.packages // {
-          ghc964 = pkgs.haskell.packages."${compilerVersion}".override {
-            overrides = self: super: {
-              opencascade-hs = haskell.lib.compose.overrideCabal (old: { configureFlags = old.configureFlags or [] ++ ["--extra-include-dirs=${pkgs.opencascade-occt}/include/opencascade"]; }) (pkgs.haskell.lib.addExtraLibrary super.opencascade-hs pkgs.opencascade-occt); 
-            };
-          };
-        };
-      };
-    };
-    allowBroken = true;
-  };
-  # TODO: Point this to unstable.
-  pkgs = import <nixpkgs> { inherit config; }; # pin the channel to ensure reproducibility!
+{pkgs}: let
+  compilerVersion = "ghc966";
   compiler = pkgs.haskell.packages."${compilerVersion}";
   # Add this if you are building a devShell in a flake. Usually, it's auto-detected
   # using lib.inNixShell, but that doesn't work in flakes
@@ -28,4 +12,6 @@ let
       pkgs.haskell.lib.addBuildTools drv
       (with pkgs.haskellPackages; [ cabal-install alex happy ]);
   };
-in pkgs.haskell.packages.ghc964.opencascade-hs
+in
+pkg.overrideAttrs
+  (attrs: { buildInputs = attrs.buildInputs ++ buildInputs; })
