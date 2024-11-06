@@ -1,7 +1,7 @@
 {
   inputs = {
-    nixpkgs.url = github:nixos/nixpkgs/nixos-unstable;
-    flake-utils.url = github:numtide/flake-utils;
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    flake-utils.url = "github:numtide/flake-utils";
   };
   outputs = { self, nixpkgs, flake-utils }:
     flake-utils.lib.eachDefaultSystem (system:
@@ -13,7 +13,12 @@
               packages = pkgs.haskell.packages // {
                 ghc966 = pkgs.haskell.packages."${compilerVersion}".override {
                   overrides = self: super: {
-                    opencascade-hs = haskell.lib.compose.overrideCabal (old: { configureFlags = old.configureFlags or [] ++ ["--extra-include-dirs=${pkgs.opencascade-occt}/include/opencascade"]; }) (pkgs.haskell.lib.addExtraLibrary super.opencascade-hs pkgs.opencascade-occt); 
+                    opencascade-hs = haskell.lib.compose.overrideCabal (old: {
+                      configureFlags = old.configureFlags or [ ] ++ [
+                        "--extra-include-dirs=${pkgs.opencascade-occt}/include/opencascade"
+                      ];
+                    }) (pkgs.haskell.lib.addExtraLibrary super.opencascade-hs
+                      pkgs.opencascade-occt);
                   };
                 };
               };
@@ -25,9 +30,9 @@
           inherit config;
           inherit system;
         };
-        example = import ./default.nix {inherit pkgs;};
+        example = import ./default.nix { inherit pkgs; };
       in {
+        devShell = pkgs.mkShell { buildInputs = [ pkgs.nixfmt ]; };
         packages.default = example;
-      }
-    );
+      });
 }

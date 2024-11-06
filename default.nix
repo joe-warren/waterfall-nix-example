@@ -1,4 +1,5 @@
-{pkgs}: let
+{ pkgs }:
+let
   compilerVersion = "ghc966";
   compiler = pkgs.haskell.packages."${compilerVersion}";
   # Add this if you are building a devShell in a flake. Usually, it's auto-detected
@@ -12,6 +13,5 @@
       pkgs.haskell.lib.addBuildTools drv
       (with pkgs.haskellPackages; [ cabal-install alex happy ]);
   };
-in
-pkg.overrideAttrs
-  (attrs: { buildInputs = attrs.buildInputs ++ buildInputs; })
+in pkg.overrideAttrs
+(attrs: { buildInputs = attrs.buildInputs ++ buildInputs; })
