@@ -20,16 +20,16 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1729880355,
-        "narHash": "sha256-RP+OQ6koQQLX5nw0NmcDrzvGL8HDLnyXt/jHhL1jwjM=",
-        "owner": "nixos",
+        "lastModified": 1730909568,
+        "narHash": "sha256-x8FWmXIJxTr3HkTZFKtBMkV+/wfmD10PVfX07MGzqzQ=",
+        "owner": "zainab-ali",
         "repo": "nixpkgs",
-        "rev": "18536bf04cd71abd345f9579158841376fdd0c5a",
+        "rev": "5c443424ec9b019e33583539b49679187cd23b2e",
         "type": "github"
       },
       "original": {
-        "owner": "nixos",
-        "ref": "nixos-unstable",
+        "owner": "zainab-ali",
+        "ref": "fix-opencascade-hs",
         "repo": "nixpkgs",
         "type": "github"
       }
