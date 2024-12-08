@@ -1,6 +1,6 @@
 {
   inputs = {
-    nixpkgs.url = "github:zainab-ali/nixpkgs/fix-opencascade-hs";
+    nixpkgs.url = "github:joe-warren/nixpkgs/fix-opencascade-hs-6";
     flake-utils.url = "github:numtide/flake-utils";
   };
   outputs = { self, nixpkgs, flake-utils }:
